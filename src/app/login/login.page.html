@@ -1,0 +1,26 @@
+<ion-header no-border>
+    <ion-menu disabled="false"></ion-menu>
+</ion-header>
+
+<ion-content>
+  <ion-padding> 
+    <img class="logo-img" src="assets/Img/Utme-Schedule_LogoOficial.png">
+  </ion-padding>
+    <img class="login-img" src="assets/Img/login.png">
+  <ion-form (ngSubmit)="getUser()">
+    <ion-item transparent lines="none">
+      <ion-input  name="Username" placeholder="Nombre">      
+      <ion-icon name="person-outline"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item transparent lines="none">
+      <ion-input name="Password" type="password" placeholder="Contraseña" [type]="showPassword ? 'text' : 'Password'">
+      <ion-icon name="key-outline"></ion-icon>
+      </ion-input>
+      <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+    </ion-item>
+    <div class="linespace">
+      <ion-button expand="block" size="default"  type="submit">sign in</ion-button>
+    </div>
+  </ion-form>
+</ion-content>
