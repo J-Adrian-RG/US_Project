@@ -17,7 +17,7 @@
       <ion-input name="Password" type="password" placeholder="Contraseña" [type]="showPassword ? 'text' : 'Password'">
       <ion-icon name="key-outline"></ion-icon>
       </ion-input>
-      <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+      <ion-icon class="icon-eye" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
     </ion-item>
     <div class="linespace">
       <ion-button expand="block" size="default"  type="submit">sign in</ion-button>
