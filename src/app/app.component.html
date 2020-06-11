@@ -1,10 +1,12 @@
 <ion-app>
     <ion-menu contentId="main-content" type="overlay">
+
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Menu</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
+            <ion-avatar>
+            <img src="assets/Img/usuario.png">
+            </ion-avatar>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
@@ -12,15 +14,10 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        
       </ion-content>
 
       <ion-footer>
       <ion-chip>
-        <ion-avatar>
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-avatar>
         <ion-label>Richard Hendriks</ion-label>
       </ion-chip>
     </ion-footer>
