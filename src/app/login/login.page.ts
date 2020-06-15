@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,9 @@ export class LoginPage implements OnInit {
 
   showPassword=false;
   passwordToggleIcon= 'eye-outline';
-  constructor() { }
+  constructor(public router: Router, 
+    private navCtrl: NavController,
+    private menu: MenuController) { }
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
@@ -21,5 +25,10 @@ export class LoginPage implements OnInit {
   }
   ngOnInit() {
   }
+
+    getLogin(){
+      this.router.navigate(['/schedule']);
+    }
+  
 
 }

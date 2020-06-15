@@ -1,5 +1,4 @@
 <ion-header no-border>
-    <ion-menu disabled="false"></ion-menu>
 </ion-header>
 
 <ion-content>
@@ -20,7 +19,7 @@
       <ion-icon class="icon-eye" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
     </ion-item>
     <div class="linespace">
-      <ion-button expand="block" size="default"  type="submit">sign in</ion-button>
+      <ion-button expand="block" size="large" type="submit" (click)="getLogin()">sign in</ion-button>
     </div>
   </ion-form>
 </ion-content>

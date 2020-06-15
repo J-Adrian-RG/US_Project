@@ -12,7 +12,9 @@ ion-title{
     background-color: #1da88a;
     border-radius: 10px;
     margin-right: 50px;
+    margin-right: 70px;
     padding: 5px;
+    text-align: center;
 }
 
 .logn-img{
@@ -26,4 +28,10 @@ ion-content{
 
 ion-footer{
     background:#1da88a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.col{
+    text-align: center;
 }

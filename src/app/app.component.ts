@@ -10,26 +10,8 @@ import {NavController} from '@ionic/angular';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Horario',
-      url: '/schedule',
-      icon: 'calendar'
-    },
-    {
-      title: 'Eventos',
-      url: '/news',
-      icon: 'newspaper'
-    },
-    {
-      title: 'Calendario',
-      url: '/calendar',
-      icon: 'today'
-    }
-  ];
   
-
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -44,9 +26,10 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.navCtrl.navigateRoot('/schedule');
+    this.navCtrl.navigateRoot('/login');
   }
 
   ngOnInit() {
   }
 }
+
