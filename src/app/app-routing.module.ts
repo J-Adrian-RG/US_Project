@@ -13,7 +13,11 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./menu/menu/menu.module').then( m => m.MenuPageModule)
+    loadChildren: () => import('./Menu/menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./Admin/menu/menu.module').then( m => m.MenuPageModule)
   },
 ];
 

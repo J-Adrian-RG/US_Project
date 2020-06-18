@@ -1,0 +1,41 @@
+<ion-split-pane  contentId="main-content">
+  <ion-menu contentId="main-content" side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-row>
+          <ion-col>
+            <ion-title>Menu</ion-title>
+          </ion-col>
+            <ion-chip color="dark">
+              <ion-label> Salir </ion-label>
+              <ion-icon name="log-out-sharp" color="light" ></ion-icon>
+            </ion-chip>
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
+
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" enable="false" *ngFor="let p of pages; let i = index">
+            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="p.url" lines="none" detail="false" [class.selected]="selectedIndex == i">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-item>
+          <ion-label>Cambiar tema</ion-label>
+          <ion-toggle color="light" checked></ion-toggle>
+        </ion-item>
+      </ion-content>
+
+    <ion-footer>
+      <ion-chip>
+        <ion-label>Richard Hendriks</ion-label>
+      </ion-chip>
+    </ion-footer>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content" main></ion-router-outlet>
+</ion-split-pane>

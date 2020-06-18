@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.navCtrl.navigateRoot('/login');
+    this.navCtrl.navigateRoot('/maestros');
   }
 
   ngOnInit() {

@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
   }
 
     getLogin(){
-      this.router.navigate(['/schedule']);
+      this.router.navigate(['/maestros']);
     }
   
 

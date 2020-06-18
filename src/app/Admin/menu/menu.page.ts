@@ -6,26 +6,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-selectedIndex = 0;
-  public appPages = [
+
+  constructor() { }
+
+  selectedIndex = 0;
+  public pages = [
     {
-      title: 'Horario',
-      url: '/schedule',
-      icon: 'calendar'
+      title: 'Maestros',
+      url: '/maestros',
+      icon: 'people'
+    },
+    {
+      title: 'Horarios',
+      url: '/horarios',
+      icon: 'time'
     },
     {
       title: 'Eventos',
-      url: '/news',
-      icon: 'newspaper'
+      url: '/eventos',
+      icon: 'today'
     },
     {
       title: 'Calendario',
-      url: '/calendar',
-      icon: 'today'
+      url: '/calendario',
+      icon: 'calendar'
     }
   ];
-  constructor() { }
-
   ngOnInit() {
   }
 
