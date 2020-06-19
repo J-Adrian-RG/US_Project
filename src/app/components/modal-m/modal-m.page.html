@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title text-center>Registrar nuevo maestro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="addData()" class="form-modal">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-input placeholder="Nombre" 
+              [(ngModel)]="maestro.name" name="name">
+            <ion-icon name="person-sharp">
+            </ion-icon></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-input placeholder="Apellido" 
+              [(ngModel)]="maestro.lastname" name="lastname">
+            <ion-icon name="card-sharp"></ion-icon>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-input placeholder="Matricula" 
+              [(ngModel)]="maestro.num_employe" name="num_employe">
+            <ion-icon name="code-working-sharp"></ion-icon>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-input placeholder="Contraseña" 
+              [(ngModel)]="maestro.passw" name="passw">
+            <ion-icon name="key-sharp"></ion-icon>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+        <ion-button type="submit" color="success" class="button-success" >
+          Agregar
+        </ion-button>
+  </form>
+
+</ion-content>
+
+
+    <ion-button expand="full" size="large" color="dark" (click)="closeModal()">
+        Volver
+    </ion-button>
+

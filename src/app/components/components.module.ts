@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
+import { ModalMPageModule } from './modal-m/modal-m.module';
 
 
 
@@ -9,7 +10,8 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent
   ],
   exports:[
-    HeaderComponent
+    HeaderComponent,
+    ModalMPageModule
   ],
   imports: [
     CommonModule

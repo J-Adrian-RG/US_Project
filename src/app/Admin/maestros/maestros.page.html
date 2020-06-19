@@ -2,5 +2,46 @@
   <app-header titulo="Maestros"></app-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row  class="ion-align-items-start">
+      <ion-col>
+        ID
+      </ion-col>
+      <ion-col>
+        Nombre
+      </ion-col>
+      <ion-col>
+        Apellido
+      </ion-col>
+      <ion-col>
+        Action
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <ion-grid>
+    <ion-row>
+    <ion-col>
+      <ion-input value="902148904"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input value="Daniel"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input value="Chaires"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-button color="warning">
+        Eliminar <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+
+      <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="openNewRegister()">
+      <ion-icon name="person-add-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
