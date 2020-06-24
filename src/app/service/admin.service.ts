@@ -20,7 +20,7 @@ export class AdminService {
   ) { }
   
 
-  url_Azure = "https://localhost:44326/api/";
+  url_Azure = "https://utem-schedule.azurewebsites.net/api/";
 
   // Boton de carga
   disabledButton:any;
