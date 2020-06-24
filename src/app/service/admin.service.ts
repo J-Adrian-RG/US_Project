@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { ToastController,LoadingController} from '@ionic/angular';
+import { promise } from 'protractor';
+import { resolve } from 'dns';
+import { rejects } from 'assert';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +15,7 @@ export class AdminService {
   constructor(
       private loadingCtrl: LoadingController,
       private toastCtrl: ToastController,
+      private router: Router,
       public httpC: HttpClient
   ) { }
   
@@ -36,25 +41,65 @@ export class AdminService {
 
   // ----Crud Maestro----
 
-  async getMaestros(){
-    this.httpC.get('');
-  }
-
-  async postMaestro( data: any ){
-    // Validaciones
-    if ( data.name == ""  ) {
-      this.presentToast(  'No ha añadido un nombre.' );
-    } 
-    else if ( data.lastname == ""  ) {
-      this.presentToast(  'No ha añadido el apellido.' );
-    } 
-    else if ( data.num_employe == ""  ) {
-      this.presentToast(  'Requiere numero de empleado.'  );
-    } 
-    else if ( data.passw == "" ) {
-      this.presentToast( 'Requiere una contraseña.' );
+    // Obtener Maestro
+  async getMaestro(  data: any ){
+    if( data.Name == "" )  { 
+      this.presentToast(  'Requiere nombre.' );
+    }
+    else if( data.Passw == "" )  {
+      this.presentToast(  'Requiere contraseña.' );
     }
     else {
+      this.disabledButton = true;
+      const loader = await this.loadingCtrl.create({
+        message: 'Cargando...'
+      });
+      loader.present();
+    return new Promise((resolve,reject)=>{
+      this.httpC.get( this.url_Azure  + 'Admin?'  + 
+        'Name=' + data.Name + 
+        '&Passw=' + data.Passw  
+        ).subscribe(( res:  any) => {
+          if( res == true && data.Name == "Admin" )  {
+            loader.dismiss();
+            this.disabledButton = false;
+            this.presentToast('Bienvenido');
+            this.router.navigate(['/maestros']);
+          }else if( res == true ){
+            loader.dismiss();
+            this.disabledButton = false;
+            this.presentToast('Bienvenido');
+            this.router.navigate(['/schedule']);
+          }
+          else{
+            loader.dismiss();
+            this.disabledButton = false;
+            this.presentToast('Usuario o contraseña incorrecta');
+          }
+          resolve(res);
+        },  (err) =>  {
+          reject(err);
+        }); 
+      });    
+    }
+  }
+
+    // Funcion Agregar Maestros
+  async postMaestro( data: any ){
+    // Validaciones
+    if( data.Name == ""  ) {
+      this.presentToast(  'No ha añadido un nombre.' );
+    } 
+    else if( data.Lastname == ""  ) {
+      this.presentToast(  'No ha añadido el apellido.' );
+    } 
+    else if( data.Num_employe == ""  ) {
+      this.presentToast(  'Requiere numero de empleado.'  );
+    } 
+    else if( data.Passw == "" ) {
+      this.presentToast( 'Requiere una contraseña.' );
+    }
+    else{
     //  Varibales de carga 
       this.disabledButton = true;
       const loader = await this.loadingCtrl.create({
@@ -64,10 +109,10 @@ export class AdminService {
     // Envio de Datos
     return new Promise((resolve, reject) => {
       this.httpC.post(  this.url_Azure + 'Admin?' + 
-      'name= ' + data.name +
-      '&lastname= ' + data.lastname +
-      '&num_employe= ' + data.num_employe +
-      '&passw= ' + data.passw,
+      'Name=' + data.Name +
+      '&Lastname=' + data.Lastname +
+      '&Num_employe=' + data.Num_employe +
+      '&Passw=' + data.Passw,
     // Ejecución
       JSON.stringify(data), {
         headers: new HttpHeaders({  
@@ -75,7 +120,7 @@ export class AdminService {
         })
       })
       .subscribe((res:any) => {
-        if (res == true) {
+        if(res == true) {
             loader.dismiss();
             this.disabledButton = false;
             this.presentToast('Ya tiene una usuario con estos datos.');

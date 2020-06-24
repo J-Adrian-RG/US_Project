@@ -12,7 +12,7 @@ export class ModalMPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private adminService: AdminService
+    public adminService: AdminService
     ) { }
 
   ngOnInit() {
@@ -20,10 +20,10 @@ export class ModalMPage implements OnInit {
   
   // Objeto 'maestro'
   maestro = { 
-    name:  '',
-    lastname:  '',
-    num_employe:  '',
-    passw: '' 
+    Name:  '',
+    Lastname:  '',
+    Num_employe:  '',
+    Passw: '' 
   }
 
     // Cerrar Modal
