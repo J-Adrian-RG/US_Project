@@ -3,9 +3,9 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row  class="ion-align-items-start">
+    <ion-row class="ion-row-options">
       <ion-col>
-        ID
+        Numero de Empleado
       </ion-col>
       <ion-col>
         Nombre
@@ -14,25 +14,27 @@
         Apellido
       </ion-col>
       <ion-col>
-        Action
+        Acción
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-grid>
-    <ion-row>
+  <ion-grid *ngFor="let maestro of maestros">
+    <ion-row class="ion-row-data">
     <ion-col>
-      <ion-input value="902148904"></ion-input>
+      <ion-input name="Num_employe" [(ngModel)]="maestro.Num_employe"></ion-input>
     </ion-col>
     <ion-col>
-      <ion-input value="Daniel"></ion-input>
+      <ion-input [(ngModel)]="maestro.Name"></ion-input>_
     </ion-col>
     <ion-col>
-      <ion-input value="Chaires"></ion-input>
+      <ion-input [(ngModel)]="maestro.Lastname"></ion-input>
     </ion-col>
     <ion-col>
-      <ion-button color="warning">
-        Eliminar <ion-icon name="trash-outline"></ion-icon>
+      <ion-button color="warning" 
+        (click)="deleteData(maestro._id)" (click)="deleteItem(maestro)">
+        Eliminar 
+        <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-col>
     </ion-row>

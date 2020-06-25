@@ -41,6 +41,20 @@ export class AdminService {
 
   // ----Crud Maestro----
 
+
+    // Obtener Maestros
+  async getMaestros(  data: any ){
+    return new Promise((resolve, reject)  => {
+      this.httpC.get( this.url_Azure + 'Admin')
+      .subscribe((res)  =>  {
+        resolve(res);
+      },  (err) =>  {
+        reject(err);
+      });
+    });
+  }
+
+
     // Obtener Maestro
   async getMaestro(  data: any ){
     if( data.Name == "" )  { 
@@ -81,8 +95,8 @@ export class AdminService {
           reject(err);
         }); 
       });    
-    }
-  }
+    };
+  };
 
     // Funcion Agregar Maestros
   async postMaestro( data: any ){
@@ -134,16 +148,26 @@ export class AdminService {
           reject(err);
           });
       });
-    }
-  }
+    };
+  };
 
 
   async putMaestro( data: any ){
     
-  }
+  };
 
+    // Funcion Elminar Maestro
   async deleteMaestro( data: any ){
-    this.httpC.delete('');
-  }
+    return new Promise((resolve,reject) => {
+      this.httpC.delete(  this.url_Azure + 'Admin?' +
+      'Id=' + data)
+      .subscribe((res)  =>  {
+        this.presentToast('Maestro Eliminado.');
+        resolve(res);
+      },  (err) => {
+        reject(err);
+      });
+    }); 
+  };
 
 }
