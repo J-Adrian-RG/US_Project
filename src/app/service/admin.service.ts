@@ -45,7 +45,7 @@ export class AdminService {
     // Obtener Maestros
   async getMaestros(  data: any ){
     return new Promise((resolve, reject)  => {
-      this.httpC.get( this.url_Azure + 'Admin')
+      this.httpC.get( this.url_Azure + 'User')
       .subscribe((res)  =>  {
         resolve(res);
       },  (err) =>  {
