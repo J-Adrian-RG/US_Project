@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalEPage } from 'src/app/components/modal-e/modal-e.page';
 
 @Component({
   selector: 'app-eventos',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
   }
+
+  async openNewEvent(){
+    const modal = await this.modalCtrl.create({
+      component: ModalEPage,
+      cssClass: 'dialog-modal',
+    });
+    modal.present();
+  };
 
 }

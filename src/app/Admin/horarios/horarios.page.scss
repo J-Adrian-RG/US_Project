@@ -1,0 +1,40 @@
+
+.ion-row-options{
+    text-align: center;
+    background-color: #d5eef8;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.ion-row-data{
+    text-align: center;
+    background-color: #eff8fc;
+    border-radius: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+ion-button ion-icon{
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+ion-icon{
+    font-size: 30px;
+}
+
+.grid-footer{
+    background-color: var(--ion-color-dark);;
+}
+
+.ion-row-footer{
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+ion-select{
+    --placeholder-opacity:  20;
+}

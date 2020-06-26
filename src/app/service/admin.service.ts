@@ -19,7 +19,7 @@ export class AdminService {
       public httpC: HttpClient
   ) { }
   
-
+//https://utem-schedule.azurewebsites.net
   url_Azure = "https://utem-schedule.azurewebsites.net/api/";
 
   // Boton de carga
@@ -152,9 +152,71 @@ export class AdminService {
   };
 
 
-  async putMaestro( data: any ){
-    
-  };
+  
+    // Funcion Agregar Horario
+    async postHorario( data: any ){
+      // Validaciones
+      if( data.File == ""  ) {
+        this.presentToast(  'No ha añadido el archivo.' );
+      } 
+      else if( data.Num_employe == ""  ) {
+        this.presentToast(  'Requiere numero de empleado.'  );
+      } 
+      else{
+      //  Varibales de carga 
+        this.disabledButton = true;
+        const loader = await this.loadingCtrl.create({
+          message: 'Cargando...'
+        });
+      loader.present();
+      // Envio de Datos
+      return new Promise((resolve, reject) => {
+        this.httpC.post(  this.url_Azure + 'Admin?' + 
+        'File=' + data.File +
+        '&Num_employe=' + data.Num_employe, 
+      // Ejecución
+        JSON.stringify(data), {
+          headers: new HttpHeaders({  
+            'Content-Type':'application/json; charset= UTF-8'
+          })
+        })
+        .subscribe((res:any) => {
+          if(res == true) {
+            loader.dismiss();
+            this.disabledButton = false;
+            this.presentToast('Ya Tiene Este Horario Asignado.');
+          }else{
+            loader.dismiss();
+            this.disabledButton = false;
+            this.presentToast('Horario Añadido.');
+          }
+          resolve(res)
+          }, (err) => {
+            reject(err)
+            })
+        })
+      }
+    }
+
+    //Funcion Actualizar Horario
+  async putHorario( data: any ){
+    return new Promise((resolve, reject)  =>  {
+      this.httpC.put( this.url_Azure + 'Admin?' +
+      'File=' + data.File +
+      '&Num_employe=' + data.Num_employe,
+        // Ejecución
+        JSON.stringify(data), {
+          headers: new HttpHeaders({  
+          'Content-Type':'application/json; charset= UTF-8'
+        })
+      })
+      .subscribe( (res: any) =>{
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
 
     // Funcion Elminar Maestro
   async deleteMaestro( data: any ){

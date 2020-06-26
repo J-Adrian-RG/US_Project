@@ -2,4 +2,80 @@
 
 <ion-content>
 
+  <ion-grid>
+    <ion-row class="ion-row-options">
+      <ion-col>
+        Archivo
+      </ion-col>
+      <ion-col>
+        Numero de Empleado
+      </ion-col>
+      <ion-col>
+        Nombre
+      </ion-col>
+      <ion-col>
+        Apellido
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid >
+    <ion-row class="ion-row-data">
+      <ion-col>
+        <ion-input name="Num_employe"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input ></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input ></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input ></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+      <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="openNewSchedule()">
+      <ion-icon src="assets/Img/time.svg" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
+
+
+<ion-footer>
+  <ion-grid class="grid-footer" >
+    <ion-row class="ion-row-footer" >
+
+      <ion-col>
+        <ion-select placeholder="N° Empleado" class="ion-select" >
+          <ion-select-option value="01">January</ion-select-option>
+          <ion-select-option >February</ion-select-option>
+        </ion-select>
+      </ion-col>  
+
+      <ion-col>
+        <ion-select placeholder="Archivo" class="ion-select" >
+          <ion-select-option value="01">January</ion-select-option>
+          <ion-select-option >February</ion-select-option>
+        </ion-select>
+      </ion-col>  
+
+      <ion-col class="ion-input-add-file">
+        <ion-input type="file" accept="string"  ></ion-input>
+      </ion-col>
+
+      <ion-col>
+        <ion-button color="primary" class="ion-button-put"
+          (click)="putData(maestro._id)">
+          Modificar 
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

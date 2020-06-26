@@ -29,7 +29,7 @@ export class MaestrosPage implements OnInit {
       cssClass: 'dialog-modal',
     });
     modal.present();
-  }
+  };
 
 
   async getAll(){
@@ -54,8 +54,8 @@ export class MaestrosPage implements OnInit {
     let index = this.maestros.indexOf(data);
     if( index > -1 ){
       await this.maestros.splice( index,  1  );
-    }
-  }
+    };
+  };
 
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalHPage } from 'src/app/components/modal-h/modal-h.page';
 
 @Component({
   selector: 'app-horarios',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HorariosPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
   }
+
+  async openNewSchedule(){
+    const modal = await this.modalCtrl.create({
+      component: ModalHPage,
+      cssClass: 'dialog-modal',
+    });
+    modal.present();
+  };
+
 
 }
