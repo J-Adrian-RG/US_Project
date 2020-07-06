@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavController, MenuController } from '@ionic/angular';
 
 import { AdminService } from '../service/admin.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,13 @@ export class LoginPage implements OnInit {
   constructor(public router: Router, 
     private navCtrl: NavController,
     private menu: MenuController,
-    public adminService: AdminService
+    public adminService: AdminService,
+    private storage: Storage,
     ) { }
 
     // Objeto 'maestro'
     maestro = { 
-      Name:  '',
+      Num_employe:  '',
       Passw: '' 
     }
 
@@ -29,7 +31,8 @@ export class LoginPage implements OnInit {
   }
 
     getLogin(){
-      this.adminService.getMaestro(this.maestro).then((res)=>{
+      this.adminService.getLogin(this.maestro).then((res)=>{
+        this.storage.set("ID", this.maestro.Num_employe)
         console.log(res);
       },(err)=>{
         console.log(err);

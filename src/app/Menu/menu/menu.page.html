@@ -6,7 +6,7 @@
         <ion-col>
           <ion-title>Menu</ion-title>
         </ion-col>
-          <ion-chip color="dark">
+          <ion-chip color="dark" (click)="logout()" >
             <ion-label> Salir </ion-label>
               <ion-icon name="log-out-sharp" color="light" ></ion-icon>
           </ion-chip>
@@ -15,9 +15,9 @@
   </ion-header>
 
     <ion-content>
-      <ion-list>
+      <ion-list *ngFor="let item of maestro" >
         <ion-avatar>
-          <img src="assets/Img/user3.svg">
+          <img src="assets/Img/{{item.Avatar}}.svg">
         </ion-avatar>       
       <ion-menu-toggle auto-hide="false" enable="false" *ngFor="let p of appPages; let i = index">
         <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
@@ -36,9 +36,9 @@
         </ion-item>
       </ion-content>
       
-      <ion-footer>
+      <ion-footer *ngFor="let ite of maestro"   >
       <ion-chip>
-        <ion-label>Richard Hendriks</ion-label>
+        <ion-label>{{ite.Name}} {{ite.Lastname}}</ion-label>
       </ion-chip>
     </ion-footer>
     

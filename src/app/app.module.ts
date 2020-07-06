@@ -9,8 +9,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
-
+// Servicios
 import {HttpClientModule} from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+// Firebase
+import {  AngularFireModule  } from '@angular/fire';
+import {  AngularFireStorageModule  } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +25,10 @@ import {HttpClientModule} from '@angular/common/http';
     ComponentsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [
     StatusBar,

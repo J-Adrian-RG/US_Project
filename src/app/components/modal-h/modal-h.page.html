@@ -6,36 +6,6 @@
 
 <ion-content>
 
-  <form  (ngSubmit)="addData()" (ngSubmit)="updateData()" class="form-modal">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-item lines="none">
-            <ion-input type="file" accept="string" 
-            [(ngModel)]="horario.File" name="File">
-              <ion-icon name="document-text-outline"></ion-icon>
-            </ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-item lines="none">
-            <ion-input placeholder=" N° Empleado" maxlength="4"
-              [(ngModel)]="horario.Num_employe" name="Num_employe">
-            <ion-icon name="code-working-sharp"></ion-icon>
-            </ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-        <ion-button type="submit" color="success" class="button-success" >
-          Agregar
-        </ion-button>
-  </form>
-
 </ion-content>
 
 

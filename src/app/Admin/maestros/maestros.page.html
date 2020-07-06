@@ -22,17 +22,20 @@
   <ion-grid *ngFor="let maestro of maestros">
     <ion-row class="ion-row-data">
     <ion-col>
-      <ion-input name="Num_employe" [(ngModel)]="maestro.Num_employe"></ion-input>
+      <ion-input name="Num_employe" 
+        [(ngModel)]="maestro.Num_employe"></ion-input>
     </ion-col>
     <ion-col>
-      <ion-input name="Name" [(ngModel)]="maestro.Name"></ion-input>
+      <ion-input name="Name" 
+        [(ngModel)]="maestro.Name"></ion-input>
     </ion-col>
     <ion-col>
-      <ion-input name="Lastname" [(ngModel)]="maestro.Lastname"></ion-input>
+      <ion-input name="Lastname" 
+        [(ngModel)]="maestro.Lastname"></ion-input>
     </ion-col>
     <ion-col>
       <ion-button color="warning" 
-        (click)="deleteData(maestro._id)" (click)="deleteItem(maestro)">
+        (click)="deleteData(maestro.Num_employe)" (click)="deleteItem(maestro)">
         Eliminar 
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>

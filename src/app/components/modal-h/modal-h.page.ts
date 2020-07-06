@@ -17,34 +17,8 @@ export class ModalHPage implements OnInit {
 
   ngOnInit() {
   }
-
-    horario = {
-      File: '',
-      Num_employe: ''
-    }
-
         // Cerrar Modal
   async closeModal(){
     await this.modalCtrl.dismiss();
   }
-
-    // Funcion Agregar Horario
-    addData(){
-      this.adminService.postHorario(this.horario)
-      .then((res)=>{
-        console.log(res);
-      },(err)=>{
-        console.log(err);
-      });
-    }
-
-    updateData(){
-      this.adminService.putHorario(this.horario)
-      .then((res)=>{
-        console.log(res);
-      },(err)=>{
-        console.log(err);
-      });
-    }
-
 }

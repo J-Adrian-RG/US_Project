@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
+import { AuthguardService } from "src/app/service/authguard.service";
 
 const routes: Routes = [
   {
@@ -10,15 +11,18 @@ const routes: Routes = [
     children:[
       {
         path: 'calendar',
-        loadChildren: () => import('../calendar/calendar.module').then( m => m.CalendarPageModule)
+        loadChildren: () => 
+        import('../calendar/calendar.module').then( m => m.CalendarPageModule),
       },
       {
         path: 'news',
-        loadChildren: () => import('../news/news.module').then( m => m.NewsPageModule)
+        loadChildren: () => 
+        import('../news/news.module').then( m => m.NewsPageModule),
       },
       {
         path: 'schedule',
-        loadChildren: () => import('../schedule/schedule.module').then( m => m.SchedulePageModule)
+        loadChildren: () => 
+        import('../schedule/schedule.module').then( m => m.SchedulePageModule),
       },
     ]
   }

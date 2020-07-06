@@ -4,78 +4,88 @@
 
   <ion-grid>
     <ion-row class="ion-row-options">
+
+      <ion-col>
+        Nombre del Archivo
+      </ion-col>
       <ion-col>
         Archivo
       </ion-col>
       <ion-col>
         Numero de Empleado
       </ion-col>
-      <ion-col>
-        Nombre
-      </ion-col>
-      <ion-col>
-        Apellido
-      </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-grid >
+
+
+  <ion-grid *ngFor="let item of Horarios">
     <ion-row class="ion-row-data">
       <ion-col>
-        <ion-input name="Num_employe"></ion-input>
+        <ion-input   
+          [(ngModel)]="item.FileName" height="10" width="10"></ion-input>
       </ion-col>
       <ion-col>
-        <ion-input ></ion-input>
+      
+  <ion-slides [options]="slideOptions" zoom >
+    <ion-slide>
+        <img src="{{item.FileUrl}}">
+    </ion-slide>
+  </ion-slides>
       </ion-col>
       <ion-col>
-        <ion-input ></ion-input>
-      </ion-col>
-      <ion-col>
-        <ion-input ></ion-input>
+        <ion-input
+          [(ngModel)]="item.Num_employe"></ion-input>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
-      <!-- fab placed to the bottom end -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="success" (click)="openNewSchedule()">
-      <ion-icon src="assets/Img/time.svg" ></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  
 
 </ion-content>
 
 
 <ion-footer>
-  <ion-grid class="grid-footer" >
-    <ion-row class="ion-row-footer" >
+
+<form (ngSubmit)="updateData()" class="form-modal">
+  <ion-grid class="grid-footer">
+    <ion-row class="ion-row-footer"  >
 
       <ion-col>
-        <ion-select placeholder="N° Empleado" class="ion-select" >
-          <ion-select-option value="01">January</ion-select-option>
-          <ion-select-option >February</ion-select-option>
-        </ion-select>
-      </ion-col>  
-
-      <ion-col>
-        <ion-select placeholder="Archivo" class="ion-select" >
-          <ion-select-option value="01">January</ion-select-option>
-          <ion-select-option >February</ion-select-option>
-        </ion-select>
-      </ion-col>  
-
-      <ion-col class="ion-input-add-file">
-        <ion-input type="file" accept="string"  ></ion-input>
+        <ion-input type="file" accept=".png, .jpg, .pdf"
+          (change)="onUpload($event)" ></ion-input>
       </ion-col>
+      <ion-col hidden>
+        <ion-input type="text"  [(ngModel)]="Horario.FileName" name="FileName" 
+          [value]="FileName"></ion-input>
+      </ion-col>
+      <ion-col hidden> 
+        <ion-input  type="text" [(ngModel)]="Horario.Token" name="Token" 
+          [value]="FileUrl | async"></ion-input>
+      </ion-col>
+      <ion-col>
+            <ion-input placeholder="Teclee N° Empleado" minlength="4" maxlength="4"
+              [(ngModel)]="Horario.Num_employe" name="Num_employe">
+            </ion-input>
+      </ion-col>   
 
       <ion-col>
         <ion-button color="primary" class="ion-button-put"
-          (click)="putData(maestro._id)">
+          *ngIf="FileUrl | async; else btnDisabled"
+          type="submit" >
           Modificar 
           <ion-icon name="create-outline"></ion-icon>
         </ion-button>
+      <ng-template #btnDisabled>
+              <ion-button disabled="true" class="ion-button-put"
+          type="submit" >
+          Modificar
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ng-template>
       </ion-col>
+
     </ion-row>
   </ion-grid>
+</form>
+
 </ion-footer>

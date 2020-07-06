@@ -31,7 +31,7 @@
       <ion-row>
         <ion-col>
           <ion-item lines="none">
-            <ion-input placeholder=" N° Empleado" 
+            <ion-input placeholder=" N° Empleado" minlength="4" maxlength="4"
               [(ngModel)]="maestro.Num_employe" name="Num_employe">
             <ion-icon name="code-working-sharp"></ion-icon>
             </ion-input>
@@ -46,10 +46,31 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-input type="file" accept=".png , .jpg, .pdf"
+              [(ngModel)]="File" name="File"  (change)="onUpload($event)">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-input hidden type="text" [(ngModel)]="maestro.File_Name" name="File_Name" 
+            [value]="FileName"></ion-input>
+          <ion-input hidden type="url" [(ngModel)]="maestro.Token" name="Token" 
+            [value]="FileUrl | async"></ion-input>
+        </ion-col>
+      </ion-row>
     </ion-grid>
-        <ion-button type="submit" color="success" class="button-success" >
+        <ion-button type="submit" color="success" class="button-success" 
+          *ngIf="FileUrl | async; else btnAdd">
           Agregar
         </ion-button>
+      <ng-template #btnAdd>
+        <ion-button disabled="true" color="success" class="button-success" 
+          type="submit" >
+          Agregar
+        </ion-button>
+      </ng-template>
   </form>
 
 </ion-content>
