@@ -16,12 +16,13 @@ export class MaestrosPage implements OnInit {
     public  adminService: AdminService
     ) { 
       this.getAll();
+      
     }
 
   ngOnInit() {
   }
 
-  maestros:any;
+  Maestros:any;
   
 
   async openNewRegister(){
@@ -34,13 +35,14 @@ export class MaestrosPage implements OnInit {
 
 
   async getAll(){
-    await this.adminService.getMaestros(this.maestros)
+    await this.adminService.getMaestros(this.Maestros)
     .then(data  =>  {
-        this.maestros = data
+        this.Maestros = data
     },  (err) =>  {
       console.log(err);
     });
   };
+
 
   async deleteData(data:any){
     await this.adminService.deleteMaestro(data)
@@ -52,11 +54,17 @@ export class MaestrosPage implements OnInit {
   };
 
   async deleteItem(data:any){
-    let index = this.maestros.indexOf(data);
+    let index = this.Maestros.indexOf(data);
     if( index > -1 ){
-      await this.maestros.splice( index,  1  );
+      await this.Maestros.splice( index,  1  );
     };
   };
 
+  doRefresh(event) {
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+    this.getAll();
+  }
 
 }

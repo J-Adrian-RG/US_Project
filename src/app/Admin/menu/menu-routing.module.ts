@@ -10,19 +10,23 @@ const routes: Routes = [
     children:[
       {
         path: 'horarios',
-        loadChildren: () => import('../horarios/horarios.module').then( m => m.HorariosPageModule)
+        loadChildren: () => 
+        import('../horarios/horarios.module').then( m => m.HorariosPageModule)
       },
       {
         path: 'eventos',
-        loadChildren: () => import('../eventos/eventos.module').then( m => m.EventosPageModule)
+        loadChildren: () => 
+        import('../eventos/eventos.module').then( m => m.EventosPageModule)
       },
       {
         path: 'maestros',
-        loadChildren: () => import('../maestros/maestros.module').then( m => m.MaestrosPageModule)
+        loadChildren: () => 
+        import('../maestros/maestros.module').then( m => m.MaestrosPageModule)
       },
       {
         path: 'calendario',
-        loadChildren: () => import('../calendario/calendario.module').then( m => m.CalendarioPageModule)
+        loadChildren: () => 
+        import('../calendario/calendario.module').then( m => m.CalendarioPageModule)
       },
     ],
   },

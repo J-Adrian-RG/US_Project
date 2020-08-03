@@ -5,6 +5,8 @@ import { AdminService } from 'src/app/service/admin.service';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
+
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -16,7 +18,8 @@ export class MenuPage implements OnInit {
 
   constructor(
     public adminService: AdminService,
-    private storage: Storage
+    private storage: Storage,
+    private navCtrl: NavController
   ) {
     this.getOne();
   }
@@ -26,9 +29,14 @@ export class MenuPage implements OnInit {
   selectedIndex = 0;
   public appPages = [
     {
-      title: 'Horario',
+      title: 'Mi Horario',
       url: '/menu/schedule',
-      icon: 'calendar'
+      icon: 'today'
+    },
+    {
+      title: 'Horarios',
+      url: '/menu/theirschedule',
+      icon: 'albums'
     },
     {
       title: 'Eventos',
@@ -38,7 +46,7 @@ export class MenuPage implements OnInit {
     {
       title: 'Calendario',
       url: '/menu/calendar',
-      icon: 'today'
+      icon: 'calendar'
     }
   ];
 
@@ -52,6 +60,7 @@ export class MenuPage implements OnInit {
       });
     });
   };
+
 
   logout(){
     location.reload();

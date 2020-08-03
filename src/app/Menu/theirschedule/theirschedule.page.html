@@ -1,0 +1,27 @@
+
+  <app-header-m Titulo="Horarios"></app-header-m>
+
+  <ion-content [fullscreen]="true">
+
+
+  <ion-grid *ngFor="let item of Horarios">
+    <ion-row class="ion-row-data">
+      <ion-col>
+      <ion-item>
+      <ion-avatar><img src="assets/Img/{{item.Avatar}}.svg"></ion-avatar>
+        <ion-label>{{item.Name}} {{item.Lastname}} </ion-label>
+        
+      </ion-item>
+  <ion-slides [options]="slideOptions" zoom >
+    <ion-slide>
+        <img src="{{item.Schedule.FileUrl}}">
+    </ion-slide>
+  </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  </ion-content>
+
+
+  <app-footer></app-footer>

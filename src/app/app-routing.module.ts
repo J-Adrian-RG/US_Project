@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { AuthguardService } from "./service/authguard.service";
+// Guards
+import { MenuGuard } from './guards/menu.guard';
 
 const routes: Routes = [
   {
@@ -16,11 +17,16 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./Menu/menu/menu.module').then( m => m.MenuPageModule),
-
+    canActivate: [MenuGuard]
+    
   },
   {
     path: '',
     loadChildren: () => import('./Admin/menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'tutorial',
+    loadChildren: () => import('./tutorial/tutorial.module').then( m => m.TutorialPageModule)
   },
 ];
 

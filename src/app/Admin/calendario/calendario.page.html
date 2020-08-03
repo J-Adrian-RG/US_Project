@@ -1,6 +1,54 @@
 
     <app-header titulo="Calendario"></app-header>
 
-<ion-content>
+<ion-content >
+
+    <ion-slides *ngFor="let item of Calendar" [options]="slideOptions" zoom >
+        <ion-slide>
+            <img src={{item.FileUrl}}/>
+        </ion-slide>
+        
+    </ion-slides>
 
 </ion-content>
+
+    <ion-footer>
+
+    <form (ngSubmit)="updateData()" class="form-modal">
+        <ion-grid class="grid-footer">
+            <ion-row class="ion-row-footer"  >
+
+            <ion-col>
+                <ion-input type="file" accept=".png, .jpg"
+                (change)="onUpload($event)" ></ion-input>
+            </ion-col>
+            <ion-col hidden>
+                <ion-input type="text"  [(ngModel)]="Calendario.FileName" name="FileName" 
+                    [value]="FileName"> </ion-input>
+            </ion-col>
+            <ion-col hidden> 
+                <ion-input  type="text" [(ngModel)]="Calendario.Token" name="Token" 
+                [value]="FileUrl | async"></ion-input>
+            </ion-col> 
+            <ion-col>
+        <ion-button color="primary" class="ion-button-put"
+          *ngIf="FileUrl | async; else btnDisabled"
+            type="submit" >
+            Agregar Calendario
+            <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ng-template #btnDisabled>
+            <ion-button disabled="true" class="ion-button-put"
+                type="submit" >
+                Agregar Calendario
+                <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+        </ng-template>
+    </ion-col>
+
+            </ion-row>
+        </ion-grid>
+    </form>
+
+</ion-footer>
+

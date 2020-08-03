@@ -1,34 +1,31 @@
-<ion-header no-border>
-</ion-header>
-
-<ion-content>
+  <ion-content>
 
     <img class="logo-img" src="assets/Img/Utme-Schedule_LogoOficial.png">
     <img class="login-img" src="assets/Img/login.png">
 
-  <form (ngSubmit)="getLogin()">
+    <form (ngSubmit)="getLogin()">
+    
+      <ion-item transparent lines="none">
+        <ion-input placeholder="N° Empleado"
+          [(ngModel)]="Maestro.Num_employe" name="Num_employe">      
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-input>
+      </ion-item>
 
-    <ion-item transparent lines="none">
-      <ion-input placeholder="N° Empleado"
-        [(ngModel)]="maestro.Num_employe" name="Num_employe">      
-      <ion-icon name="person-outline"></ion-icon>
-      </ion-input>
-    </ion-item>
-
-    <ion-item transparent lines="none">
-      <ion-input  type="password" placeholder="Contraseña" 
-        [type]="showPassword ? 'text' : 'Password'"
-          [(ngModel)]="maestro.Passw" name="Passw">
-      <ion-icon name="key-outline"></ion-icon>
-      </ion-input>
-      <ion-icon class="icon-eye" slot="end" [name]="passwordToggleIcon" 
+      <ion-item transparent lines="none">
+        <ion-input  type="password" placeholder="Contraseña" 
+          [type]="showPassword ? 'text' : 'Password'"
+            [(ngModel)]="Maestro.Passw" name="Passw">
+          <ion-icon name="key-outline"></ion-icon>
+        </ion-input>
+        <ion-icon class="icon-eye" slot="end" [name]="passwordToggleIcon" 
         (click)="togglePassword()"></ion-icon>
-    </ion-item>
+      </ion-item>
 
     <div class="linespace">
       <ion-button expand="block" size="large" type="submit">sign in</ion-button>
     </div>
 
-  </form>
+    </form>
 
-</ion-content>
+  </ion-content>

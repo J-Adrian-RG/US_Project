@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController
+  ) { }
 
   selectedIndex = 0;
   public pages = [
@@ -35,4 +38,11 @@ export class MenuPage implements OnInit {
   ngOnInit() {
   }
 
+
+  
+  logout(){
+    location.reload();
+  }
+
+  
 }

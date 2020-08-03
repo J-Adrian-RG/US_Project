@@ -23,25 +23,30 @@ export class SchedulePage implements OnInit {
   ngOnInit() {
   }
 
-  maestro:any;
+  Maestro:any;
 
   slideOptions = {
     zoom: {
       maxRatio: 3
     }
   };
-  
+
+
   async getOne(){
     await this.storage.get('ID').then((data)=>{
-      this.adminService.getMaestro(data)
+      this.adminService.getHorario(data)
       .then(data  =>  {
-        this.maestro = data
-      },  (err) =>  {
-        console.log(err);
+        this.Maestro = data
       });
     });
   };
 
+  doRefresh(event) {
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+    this.getOne();
+  }
 
 
 }

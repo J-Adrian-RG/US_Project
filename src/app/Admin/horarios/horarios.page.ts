@@ -86,4 +86,11 @@ export class HorariosPage implements OnInit {
           
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+    this.getAllSchedule();
+  }
+
 }

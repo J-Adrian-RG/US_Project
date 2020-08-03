@@ -6,7 +6,7 @@
           <ion-col>
             <ion-title>Menu</ion-title>
           </ion-col>
-            <ion-chip color="dark">
+            <ion-chip color="dark" (click)="logout()">
               <ion-label> Salir </ion-label>
               <ion-icon name="log-out-sharp" color="light" ></ion-icon>
             </ion-chip>
@@ -24,15 +24,11 @@
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-item>
-          <ion-label>Cambiar tema</ion-label>
-          <ion-toggle color="light" checked></ion-toggle>
-        </ion-item>
       </ion-content>
 
     <ion-footer>
       <ion-chip>
-        <ion-label>Richard Hendriks</ion-label>
+        <ion-label>Administrador</ion-label>
       </ion-chip>
     </ion-footer>
   </ion-menu>

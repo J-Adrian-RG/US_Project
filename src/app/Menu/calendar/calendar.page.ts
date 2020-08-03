@@ -11,5 +11,11 @@ export class CalendarPage implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  slideOptions = {
+    zoom: {
+      maxRatio: 3
+    }
+  };
+  
 }

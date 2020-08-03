@@ -2,9 +2,13 @@
 
 <ion-content>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-grid>
     <ion-row class="ion-row-options">
-
       <ion-col>
         Nombre del Archivo
       </ion-col>
@@ -17,13 +21,11 @@
     </ion-row>
   </ion-grid>
 
-
-
   <ion-grid *ngFor="let item of Horarios">
     <ion-row class="ion-row-data">
       <ion-col>
         <ion-input   
-          [(ngModel)]="item.FileName" height="10" width="10"></ion-input>
+          [(ngModel)]="item.FileName"></ion-input>
       </ion-col>
       <ion-col>
       

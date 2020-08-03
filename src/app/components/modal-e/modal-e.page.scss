@@ -1,0 +1,43 @@
+ion-header ion-toolbar{
+    --background: #1da88a;
+    text-align: center;
+    color: #fcfcfc;
+}
+
+ion-label{
+    --color: #1da88a;
+}
+
+ion-item{
+    --border-color: transparent!important;
+    --highlight-height: 0;
+    border: 1px solid #1da88a;
+    border-radius: 5px;
+}
+ion-icon{
+    font-size: 15px;
+}
+.row-datetime{
+    align-items: center;
+    text-align: center;
+}
+
+ion-textarea{
+    border-radius: 15px;
+    border-color: green;
+}
+
+.button-success{
+    margin-right: 20px;
+    margin-top: 15px;
+    margin-left: 90mm;
+    --padding-start: 60px;
+    --padding-end: 60px;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+}
+
+.button-success ion-icon{
+    margin-left: 5px;
+    font-size: 20px;
+}

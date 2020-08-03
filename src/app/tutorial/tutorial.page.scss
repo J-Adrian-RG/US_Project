@@ -1,0 +1,32 @@
+ion-slides{
+    --bullet-background: #11ddaa;
+    --bullet-background-active: #11ddaa;
+}
+
+ion-slide{
+    height: 100vh;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.slide-one{
+    background: #fcfcfc;
+}
+
+.slide-two{
+    background: #fcfcfc;
+}
+
+.slide-three{
+    background: #fcfcfc;
+}
+
+img{
+    width: 30vh;
+    height: 30vh;
+}
+
+.sidemenu-img{
+    width: 50vh;
+    height: 50vh;
+}

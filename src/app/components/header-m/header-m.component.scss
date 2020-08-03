@@ -1,0 +1,22 @@
+ion-menu-button {
+    color: var(--ion-color-dark);
+}
+ion-toolbar{
+    --background:  #1da88a;
+    --color: #fcfcfc;
+}
+
+ion-title{
+    box-shadow: inset 8px 8px 8px #109276,
+                inset -8px -8px 8px #05a381;
+    background-color: #1da88a;
+    border-radius: 10px;
+    margin-right: 70px;
+    padding: 5px;
+    text-align: center;
+}
+
+.logn-img{
+    width: 65px;
+    margin-right: 20px;
+}

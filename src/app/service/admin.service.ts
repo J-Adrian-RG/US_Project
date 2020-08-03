@@ -19,13 +19,10 @@ export class AdminService {
       private toastCtrl: ToastController,
       private router: Router,
       public httpC: HttpClient
-  ) {
+  ) {}
 
-  }
-  //https://localhost:44326
-//https://utem-schedule.azurewebsites.net
   url_Azure = "https://utem-schedule.azurewebsites.net/api/";
-  
+
 
   // Boton de carga
   disabledButton:any;
@@ -42,15 +39,21 @@ export class AdminService {
       duration: 2500,
     });
     toast.present();
+    
     }
 
 
-  // ----Crud Maestro----
+  // ----CRUD Maestro----
 
     // Obtener Maestros
   async getMaestros(  data: any ){
     return new Promise((resolve, reject)  => {
-      this.httpC.get( this.url_Azure + 'Admin')
+      this.httpC.get( this.url_Azure + 'Teacher',
+      {        
+        headers: new HttpHeaders({  
+        'Content-Type':'application/json; charset= UTF-8'
+      })
+    })
       .subscribe((res)  =>  {
         resolve(res);
       },  (err) =>  {
@@ -63,22 +66,13 @@ export class AdminService {
       // Obtener Maestro
       async getMaestro( data:any  ){
         return new Promise((resolve, reject)  => {
-          this.httpC.get( this.url_Azure + 'User?' +
-          'Num_employe=' + data 
-          )
-          .subscribe((res)  =>  {
-            resolve(res);
-          },  (err) =>  {
-            reject(err);
-          });
-        });
-      }
-
-
-      // Obtener Horarios
-      async getHorarios(  data: any ){
-        return new Promise((resolve, reject)  => {
-          this.httpC.get( this.url_Azure + 'User')
+          this.httpC.get( this.url_Azure + 'Teacher?' +
+          'Num_employe=' + data,
+          {        
+            headers: new HttpHeaders({  
+            'Content-Type':'application/json; charset= UTF-8',
+          })
+        })
           .subscribe((res)  =>  {
             resolve(res);
           },  (err) =>  {
@@ -103,7 +97,7 @@ export class AdminService {
       });
       loader.present();
     return new Promise((resolve,reject)=>{
-      this.httpC.get( this.url_Azure  + 'Admin?'  + 
+      this.httpC.get( this.url_Azure  + 'Teacher?'  + 
         'Num_employe=' + data.Num_employe + 
         '&Passw=' + data.Passw  
         ).subscribe(( res:  any) => {
@@ -111,8 +105,7 @@ export class AdminService {
             loader.dismiss();
             this.disabledButton = false;
             this.presentToast('Bienvenido');
-            this.router.navigate(['/maestros']);
-          
+            this.router.navigate(['/maestros']);          
           }else if( res == true ){
             loader.dismiss();
             this.disabledButton = false;
@@ -131,6 +124,7 @@ export class AdminService {
       });    
     };
   };
+
 
     // Funcion Agregar Maestros
   async postMaestro( data: any ){
@@ -159,7 +153,7 @@ export class AdminService {
     loader.present();
     // Envio de Datos
     return new Promise((resolve, reject) => {
-      this.httpC.post(  this.url_Azure + 'Admin?' + 
+      this.httpC.post(  this.url_Azure + 'Teacher?' + 
       'Name=' + data.Name +
       '&Lastname=' + data.Lastname +
       '&Num_employe=' + data.Num_employe +
@@ -190,10 +184,63 @@ export class AdminService {
     };
   };
 
+    // Funcion Elminar Maestro
+    async deleteMaestro( data: any ){
+      return new Promise((resolve,reject) => {
+        this.httpC.delete(  this.url_Azure + 'Teacher?' +
+        'Id=' + data)
+        .subscribe((res)  =>  {
+          this.presentToast('Maestro Eliminado.');
+          resolve(res);
+        },  (err) => {
+          reject(err);
+        });
+      }); 
+    };
+
+
+  // ----CRUD Horarios----
+
+        // Obtener Horarios
+        async getHorarios(  data: any ){
+          return new Promise((resolve, reject)  => {
+            this.httpC.get( this.url_Azure + 'Schedule',
+            {        
+              headers: new HttpHeaders({  
+              'Content-Type':'application/json; charset= UTF-8'
+            })
+          })
+            .subscribe((res)  =>  {
+              resolve(res);
+            },  (err) =>  {
+              reject(err);
+            });
+          });
+        }
+
+        // Obtener Horarios
+        async getHorario(  data: any ){
+          return new Promise((resolve, reject)  => {
+            this.httpC.get( this.url_Azure + 'Schedule?' +
+            "Num_employe=" + data,
+            {        
+              headers: new HttpHeaders({  
+              'Content-Type':'application/json; charset= UTF-8'
+            })
+          })
+            .subscribe((res)  =>  {
+              resolve(res);
+            },  (err) =>  {
+              reject(err);
+            });
+          });
+        }
+        
+
     //Funcion Actualizar Horario 
   async putHorario( data: any ){
     return new Promise((resolve, reject)  =>  {
-      this.httpC.put( this.url_Azure + 'Admin?' +
+      this.httpC.put( this.url_Azure + 'Schedule?' +
       'FileName=' + data.FileName +
       '&Token=' + data.Token.split("&")[1] +
       '&Num_employe=' + data.Num_employe,
@@ -217,18 +264,134 @@ export class AdminService {
     })
   }
 
-    // Funcion Elminar Maestro
-  async deleteMaestro( data: any ){
+
+
+  // --CRUD Evento--
+
+  //Funcion Agregar Nuevo Evento
+  async postEvent( data: any ){
+    // Validaciones
+    if( data.Title == ""  ) {
+      this.presentToast(  'No ha añadido un titulo.' );
+    } 
+    else if( data.Text == ""  ) {
+      this.presentToast(  'No ha añadido el asunto.' );
+    } 
+    else if( data.Date == ""  ) {
+      this.presentToast(  'Requiere dia.'  );
+    } 
+    else if( data.Time == "" ) {
+      this.presentToast( 'Requiere el mes.' );
+    }
+    else{
+    //  Varibales de carga 
+      this.disabledButton = true;
+      const loader = await this.loadingCtrl.create({
+        message: 'Cargando...'
+      });
+    loader.present();
+    // Envio de Datos
+    return new Promise((resolve, reject) => {
+      this.httpC.post(  this.url_Azure + 'Event?' + 
+      'Title=' + data.Title +
+      '&Text=' + data.Text +
+      '&Date=' + data.Date +
+      '&Time=' + data.Time ,
+    // Ejecución
+      JSON.stringify(data), {
+        headers: new HttpHeaders({  
+          'Content-Type':'application/json; charset= UTF-8'
+        })
+      })
+      .subscribe((res:any) => {
+        if(res == true) {
+            loader.dismiss();
+            this.disabledButton = false;
+            this.presentToast('Evento Creado.');
+        }
+        resolve(res);
+        }, (err) => {
+          reject(err);
+          });
+      });
+    };
+  };
+
+
+  // Obtener Eventos
+    async getEvent( ){
+      return new Promise((resolve, reject)  => {
+        this.httpC.get( this.url_Azure + 'Event?' +
+        'Eve=' + 'Evento',
+        {        
+          headers: new HttpHeaders({  
+          'Content-Type':'application/json; charset= UTF-8',
+          })
+        })
+        .subscribe((res)  =>  {
+          resolve(res);
+        },  (err) =>  {
+          reject(err);
+        });
+      });
+    }
+
+
+        // Funcion Elminar Evento
+  async deleteEvent( data: any ){
     return new Promise((resolve,reject) => {
-      this.httpC.delete(  this.url_Azure + 'Admin?' +
+      this.httpC.delete(  this.url_Azure + 'Event?' +
       'Id=' + data)
       .subscribe((res)  =>  {
-        this.presentToast('Maestro Eliminado.');
+        this.presentToast('Evento Eliminado.');
         resolve(res);
       },  (err) => {
         reject(err);
       });
     }); 
   };
+
+  // -- CRUD Calendario --
+
+    // Obtener Calendario
+    async getCalendar( data : any ){
+      return new Promise((resolve, reject)  => {
+        this.httpC.get( this.url_Azure + 'Event',
+        {        
+          headers: new HttpHeaders({  
+          'Content-Type':'application/json; charset= UTF-8',
+          })
+        })
+        .subscribe((res)  =>  {
+          resolve(res);
+        },  (err) =>  {
+          reject(err);
+        });
+      });
+    }
+
+    //Funcion Actualizar Calendario 
+  async putCalendar( data: any ){
+    return new Promise((resolve, reject)  =>  {
+      this.httpC.put( this.url_Azure + 'Event?' +
+      'FileName=' + data.FileName +
+      '&Token=' + data.Token.split("&")[1] ,
+        // Ejecución
+        JSON.stringify(data), {
+          headers: new HttpHeaders({  
+          'Content-Type':'application/json; charset= UTF-8'
+        })
+      })
+      .subscribe( (res: any) =>{
+        if(res == true) {
+          this.presentToast('Nuevo Calendario Agregado.');
+        }
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
 
 }

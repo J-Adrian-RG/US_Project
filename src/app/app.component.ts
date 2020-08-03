@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {NavController} from '@ionic/angular';
+import { AdminService } from './service/admin.service';
 
 @Component({
   selector: 'app-root',
@@ -16,19 +17,31 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    public adminService: AdminService
   ) {
     this.initializeApp();
+    this.getAllSchedule();
   }
+
+  Horarios:any;
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.navCtrl.navigateRoot('/maestros');
+    this.navCtrl.navigateRoot('/login');
   }
 
+  async getAllSchedule(){
+    await this.adminService.getHorarios(this.Horarios)
+    .then(  data  =>  {
+        this.Horarios = data
+    },  (err) =>  {
+      console.log(err);
+    });
+  };
   ngOnInit() {
   }
 }

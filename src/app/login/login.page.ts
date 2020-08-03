@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, MenuController } from '@ionic/angular';
-
+// imports agregados
 import { AdminService } from '../service/admin.service';
 import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-login',
@@ -19,24 +20,25 @@ export class LoginPage implements OnInit {
     private menu: MenuController,
     public adminService: AdminService,
     private storage: Storage,
-    ) { }
+    ) {
+      
+    }
 
     // Objeto 'maestro'
-    maestro = { 
+    Maestro = { 
       Num_employe:  '',
       Passw: '' 
     }
 
   ngOnInit() {
+    
   }
 
-    getLogin(){
-      this.adminService.getLogin(this.maestro).then((res)=>{
-        this.storage.set("ID", this.maestro.Num_employe)
-        console.log(res);
-      },(err)=>{
-        console.log(err);
+    async getLogin(){
+      await this.adminService.getLogin(this.Maestro).then((res)=>{
+        this.storage.set("ID", this.Maestro.Num_employe)
       });
+      this.storage.set("Session", true);
     }
 
     togglePassword(): void {
@@ -47,4 +49,5 @@ export class LoginPage implements OnInit {
         this.passwordToggleIcon = 'eye-outline';
       }
     }
+
 }

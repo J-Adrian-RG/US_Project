@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NewsPageRoutingModule } from './news-routing.module';
 
 import { NewsPage } from './news.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
@@ -15,7 +16,8 @@ import { NewsPage } from './news.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    NewsPageRoutingModule
+    NewsPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [NewsPage],
 })

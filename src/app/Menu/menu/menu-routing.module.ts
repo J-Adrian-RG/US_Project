@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
-import { AuthguardService } from "src/app/service/authguard.service";
+import { TutorialguardGuard } from 'src/app/guards/tutorialguard.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +23,13 @@ const routes: Routes = [
         path: 'schedule',
         loadChildren: () => 
         import('../schedule/schedule.module').then( m => m.SchedulePageModule),
+        
       },
+      {
+        path: 'theirschedule',
+        loadChildren: () => 
+        import('../theirschedule/theirschedule.module').then( m => m.TheirschedulePageModule)
+      }
     ]
   }
 ];

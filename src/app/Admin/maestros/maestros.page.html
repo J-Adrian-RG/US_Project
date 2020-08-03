@@ -2,6 +2,12 @@
   <app-header titulo="Maestros"></app-header>
 
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"  pullFactor="0.5" pullMin="100" pullMax="200">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-grid>
     <ion-row class="ion-row-options">
       <ion-col>
@@ -19,7 +25,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid *ngFor="let maestro of maestros">
+  <ion-grid *ngFor="let maestro of Maestros">
     <ion-row class="ion-row-data">
     <ion-col>
       <ion-input name="Num_employe" 
